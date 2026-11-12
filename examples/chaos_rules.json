@@ -1,0 +1,25 @@
+{
+  "target_url": "https://api.github.com",
+  "listen_host": "127.0.0.1",
+  "listen_port": 8080,
+  "record_dir": "./recorded_fixtures",
+  "rules": [
+    {
+      "path_pattern": "^/users/.*/repos",
+      "methods": ["GET"],
+      "latency_min_ms": 300,
+      "latency_max_ms": 800
+    },
+    {
+      "path_pattern": "^/repos/.*/issues",
+      "methods": ["POST"],
+      "error_rate": 0.25,
+      "error_status": 502,
+      "error_body": "{\"message\": \"ChaosProxy injected 502 Bad Gateway\"}"
+    },
+    {
+      "path_pattern": "^/rate_limit",
+      "corrupt_rate": 0.5
+    }
+  ]
+}
