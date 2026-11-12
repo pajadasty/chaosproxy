@@ -43,7 +43,7 @@ class ChaosRule:
 class ProxyConfig:
     target_url: Optional[str] = None
     listen_host: str = "127.0.0.1"
-    listen_port: int = 8080
+    listen_port: int = 8888
     record_dir: Optional[Path] = None
     replay_dir: Optional[Path] = None
     offline_only: bool = False

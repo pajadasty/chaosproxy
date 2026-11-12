@@ -37,7 +37,9 @@ def filter_response_headers(headers: Dict[str, str]) -> Dict[str, str]:
     cleaned: Dict[str, str] = {}
     for k, v in headers.items():
         k_lower = k.lower()
-        if k_lower not in HOP_BY_HOP_HEADERS and k_lower != "content-length":
+        # httpx automatically decodes gzip/br/deflate into .content, so strip content-encoding
+        # to prevent downstream clients (like PowerShell or curl) from attempting double-decompression.
+        if k_lower not in HOP_BY_HOP_HEADERS and k_lower not in ("content-length", "content-encoding"):
             cleaned[k] = v
     return cleaned
 

@@ -34,8 +34,8 @@ def build_parser() -> argparse.ArgumentParser:
         "-p", "--port",
         dest="port",
         type=int,
-        default=8080,
-        help="Local port to bind to (default: 8080)",
+        default=8888,
+        help="Local port to bind to (default: 8888)",
     )
     parser.add_argument(
         "--host",
